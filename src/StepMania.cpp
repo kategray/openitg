@@ -1057,7 +1057,7 @@ int main(int argc, char* argv[])
 		CString patchDirPhysicalPath = FILEMAN->ResolvePath( patchFileVirtualDir );
 
 		FILEMAN->Mount( "patch", patchDirPhysicalPath, "/Patch" );
-		FILEMAN->Mount( "zip", "/Patch/patch.zip", "/", false );
+		FILEMAN->Mount( "zip", PATCH_FILE, "/", false );
 	}
 	else
 	{

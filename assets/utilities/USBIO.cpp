@@ -147,6 +147,7 @@ bool USBDriver::Open()
 // The device may be claimed by a kernel driver. Attempt to reclaim it.
 // This macro is self-porting, so no ifdef LINUX should be needed.
 #ifdef LIBUSB_HAS_DETACH_KERNEL_DRIVER_NP
+/*
 		for( unsigned i = 0; i < dev->config->bNumInterfaces; i++ )
 		{
 			int iResult = usb_detach_kernel_driver_np( m_pHandle, i );
@@ -165,6 +166,7 @@ bool USBDriver::Open()
 				break;
 			}
 		}
+*/
 #endif
 
 	if ( usb_set_configuration(m_pHandle, dev->config->bConfigurationValue) < 0 )

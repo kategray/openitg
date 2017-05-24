@@ -434,6 +434,46 @@ const AutoJoyMapping g_AutoJoyMappings[] =
 			END_MARKER
 		}
 	},
+	{
+		"dance",
+		"Kate Gray",
+		"Kate-IO",
+		{
+			/* Player 1 Up, Down, Left, Right */
+			{ 0, JOY_1,		DANCE_BUTTON_UP,		false },
+			{ 0, JOY_2,		DANCE_BUTTON_DOWN,		false },
+			{ 0, JOY_3,		DANCE_BUTTON_LEFT,		false },
+			{ 0, JOY_4,		DANCE_BUTTON_RIGHT,		false },
+
+			/* Player 1 Panel Buttons */
+			{ 0, JOY_9,		GAME_BUTTON_START,		false },
+			{ 0, JOY_10,	GAME_BUTTON_SELECT,		false },
+			{ 0, JOY_11,	GAME_BUTTON_MENULEFT,	false },
+			{ 0, JOY_12,	GAME_BUTTON_MENURIGHT,	false },
+
+			/* Player 2 Up, Down, Left, Right */
+			{ 0, JOY_17,	DANCE_BUTTON_UP,		true },
+			{ 0, JOY_18,	DANCE_BUTTON_DOWN,		true },
+			{ 0, JOY_19,	DANCE_BUTTON_LEFT,		true },
+			{ 0, JOY_20,	DANCE_BUTTON_RIGHT,		true },
+
+			/* Panel Buttons */
+			{ 0, JOY_25,	GAME_BUTTON_START,		true },
+			{ 0, JOY_26,	GAME_BUTTON_SELECT,		true },
+			{ 0, JOY_27,	GAME_BUTTON_MENULEFT,	true },
+			{ 0, JOY_28,	GAME_BUTTON_MENURIGHT,	true },
+
+			/* Coin and Service */
+			{ 0, JOY_15,	GAME_BUTTON_COIN,		false },
+			{ 0, JOY_16,	GAME_BUTTON_OPERATOR,	false },
+			{ 0, JOY_31,	GAME_BUTTON_COIN,		true },
+			{ 1, JOY_32,	GAME_BUTTON_COIN,		true },
+
+			/* Other controls */
+			END_MARKER
+		}
+	},
+
 };
 
 void InputMapper::ApplyMapping( const Mapping *maps, GameController gc, InputDevice device )

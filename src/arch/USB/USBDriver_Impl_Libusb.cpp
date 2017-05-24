@@ -74,7 +74,7 @@ bool USBDriver_Impl_Libusb::Open( int iVendorID, int iProductID )
 		return false;
 	}
 
-#ifdef LIBUSB_HAS_DETACH_KERNEL_DRIVER_NP
+#ifdef GLIBUSB_HAS_DETACH_KERNEL_DRIVER_NP
 	// The device may be claimed by a kernel driver. Attempt to reclaim it.
 
 	for( unsigned iface = 0; iface < dev->config->bNumInterfaces; iface++ )
