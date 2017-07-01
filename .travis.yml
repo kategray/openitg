@@ -35,3 +35,4 @@ deploy:
   file: src/openitg
   on:
     repo: kategray/openitg
+    tags: true
