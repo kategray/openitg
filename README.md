@@ -1,4 +1,5 @@
-# OpenITG
+# OpenITG 
+![Travis CI Status](https://travis-ci.org/kategray/openitg.svg?branch=master)
 
 An open-source rhythm dancing game which is a fork of StepMania 3.95
 with the goal of adding arcade-like ITG-style behavior and serving as a drop-in
