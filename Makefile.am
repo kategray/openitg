@@ -3,3 +3,5 @@ AUTOMAKE_OPTIONS = 1.7 foreign
 SUBDIRS = src
 # XXX: This is supposed to fix compile errors, but I can't test it... - Vyhd
 ACLOCAL_AMFLAGS = -Iautoconf/m4
+
+test: .PHONY
