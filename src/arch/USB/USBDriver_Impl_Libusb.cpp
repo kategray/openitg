@@ -74,38 +74,6 @@ bool USBDriver_Impl_Libusb::Open( int iVendorID, int iProductID )
 		return false;
 	}
 
-#ifdef GLIBUSB_HAS_DETACH_KERNEL_DRIVER_NP
-	// The device may be claimed by a kernel driver. Attempt to reclaim it.
-
-	for( unsigned iface = 0; iface < dev->config->bNumInterfaces; iface++ )
-	{
-		int iResult = usb_detach_kernel_driver_np( m_pHandle, iface );
-
-		// device doesn't understand message, no attached driver, no error -- ignore these
-		if( iResult == -EINVAL || iResult == -ENODATA || iResult == 0 )
-			continue;
-
-		/* we have an error we can't handle; try and get more info. */
-		LOG->Warn( "usb_detach_kernel_driver_np: %s\n", usb_strerror() );
-
-
-#ifdef LIBUSB_HAS_GET_DRIVER_NP
-		// on EPERM, a driver exists and we can't detach - report which one
-		if( iResult == -EPERM )
-		{
-			char szDriverName[16];
-			strcpy( szDriverName, "(unknown)" );
-			usb_get_driver_np(m_pHandle, iface, szDriverName, 16);
-
-			LOG->Warn( "(cannot detach kernel driver \"%s\")", szDriverName );
-		}
-#endif	// LIBUSB_HAS_GET_DRIVER_NP
-
-		Close();
-		return false;
-	}
-#endif	// LIBUSB_HAS_DETACH_KERNEL_DRIVER_NP
-
 	if ( !SetConfiguration(dev->config->bConfigurationValue) )
 	{
 		LOG->Warn( "Libusb: usb_set_configuration: %s", usb_strerror() );
