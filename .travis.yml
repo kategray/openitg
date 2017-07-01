@@ -25,3 +25,5 @@ matrix:
                       - libavformat-dev 
                       - libswscale-dev 
                       - libavutil-dev
+                      - libsamplerate0
+                      - libsndfile1
