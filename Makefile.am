@@ -4,4 +4,4 @@ SUBDIRS = src
 # XXX: This is supposed to fix compile errors, but I can't test it... - Vyhd
 ACLOCAL_AMFLAGS = -Iautoconf/m4
 
-test: .PHONY
+test: all-recursive

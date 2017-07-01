@@ -495,19 +495,26 @@ all_test_SOURCES = \
 		$(ArchHooks) \
 		$(Threads) \
 		$(Dialog) \
+                $(aes) \
+                $(ibutton) \
+                $(crypto) \
 		tests/test_misc.cpp tests/test_misc.h \
 		IniFile.cpp IniFile.h \
 		XmlFile.cpp XmlFile.h \
 		DateTime.cpp DateTime.h \
 		PrefsManager.cpp PrefsManager.h \
 		Preference.cpp Preference.h \
-		LuaFunctions.h LuaHelpers.cpp LuaHelpers.h \
+		LuaFunctions.h LuaManager.cpp LuaManager.h \
+		LuaReference.h LuaReference.cpp \
+		MessageManager.h MessageManager.cpp \
+		ProductInfo.h ProductInfo.cpp \
 		RageException.cpp \
 		RageLog.cpp \
 		RageThreads.cpp \
 		RageTimer.cpp RageTimer.h \
 		RageUtil.cpp \
 		RageUtil_FileDB.cpp RageUtil_FileDB.h \
+		RageUtil_WorkerThread.cpp RageUtil_WorkerThread.h \
 		global.cpp global.h
 
 TESTS += test_audio_readers

@@ -24,8 +24,8 @@ matrix:
         - libavformat-dev
         - libswscale-dev
         - libavutil-dev
-        - libsamplerate0
-        - libsndfile1
+        - libsamplerate0-dev
+        - libsndfile1-dev
 deploy:
   provider: releases
   api_key:

@@ -895,13 +895,27 @@ am__test_audio_readers_SOURCES_DIST = RageSoundReader_WAV.cpp \
 	arch/Threads/Threads_Pthreads.cpp \
 	arch/Threads/Threads_Pthreads.h arch/Dialog/Dialog.cpp \
 	arch/Dialog/Dialog.h arch/Dialog/DialogDriver.cpp \
-	arch/Dialog/DialogDriver.h tests/test_misc.cpp \
-	tests/test_misc.h IniFile.cpp IniFile.h XmlFile.cpp XmlFile.h \
-	DateTime.cpp DateTime.h PrefsManager.cpp PrefsManager.h \
-	Preference.cpp Preference.h LuaFunctions.h LuaHelpers.cpp \
-	LuaHelpers.h RageException.cpp RageLog.cpp RageThreads.cpp \
+	arch/Dialog/DialogDriver.h aes/aescrypt.c aes/aeskey.c \
+	aes/aestab.c aes/aesopt.h aes/aes.h ibutton/owerr.c \
+	ibutton/ownetu.c ibutton/ownet.h ibutton/owllu.c \
+	ibutton/owsesu.c ibutton/owtrnu.c ibutton/owfile.h \
+	ibutton/crcutil.c ibutton/ds2480ut.c ibutton/ds2480.h \
+	ibutton/linuxlnk.c ibutton/sha18.c ibutton/shaib.c \
+	ibutton/shaib.h iButton.cpp iButton.h crypto/CryptBn.cpp \
+	crypto/CryptBn.h crypto/CryptMD5.cpp crypto/CryptMD5.h \
+	crypto/CryptNoise.cpp crypto/CryptPrime.cpp \
+	crypto/CryptPrime.h crypto/CryptRSA.cpp crypto/CryptRSA.h \
+	crypto/CryptRand.cpp crypto/CryptRand.h crypto/CryptSH512.cpp \
+	crypto/CryptSH512.h crypto/CryptSHA.cpp crypto/CryptSHA.h \
+	tests/test_misc.cpp tests/test_misc.h IniFile.cpp IniFile.h \
+	XmlFile.cpp XmlFile.h DateTime.cpp DateTime.h PrefsManager.cpp \
+	PrefsManager.h Preference.cpp Preference.h LuaFunctions.h \
+	LuaManager.cpp LuaManager.h LuaReference.h LuaReference.cpp \
+	MessageManager.h MessageManager.cpp ProductInfo.h \
+	ProductInfo.cpp RageException.cpp RageLog.cpp RageThreads.cpp \
 	RageTimer.cpp RageTimer.h RageUtil.cpp RageUtil_FileDB.cpp \
-	RageUtil_FileDB.h global.cpp global.h \
+	RageUtil_FileDB.h RageUtil_WorkerThread.cpp \
+	RageUtil_WorkerThread.h global.cpp global.h \
 	tests/test_audio_readers.cpp RageSoundUtil.cpp RageSoundUtil.h \
 	RageSoundMixBuffer.cpp RageSoundMixBuffer.h \
 	RageSoundReader_FileReader.cpp RageSoundReader_FileReader.h \
@@ -915,12 +929,15 @@ am__test_audio_readers_SOURCES_DIST = RageSoundReader_WAV.cpp \
 	RageSoundResampler.h
 am__objects_61 = $(am__objects_35) $(am__objects_46) $(am__objects_47) \
 	$(am__objects_59) $(am__objects_17) $(am__objects_38) \
-	$(am__objects_36) tests/test_misc.$(OBJEXT) IniFile.$(OBJEXT) \
+	$(am__objects_36) $(am__objects_56) $(am__objects_55) \
+	$(am__objects_57) tests/test_misc.$(OBJEXT) IniFile.$(OBJEXT) \
 	XmlFile.$(OBJEXT) DateTime.$(OBJEXT) PrefsManager.$(OBJEXT) \
-	Preference.$(OBJEXT) LuaHelpers.$(OBJEXT) \
-	RageException.$(OBJEXT) RageLog.$(OBJEXT) \
-	RageThreads.$(OBJEXT) RageTimer.$(OBJEXT) RageUtil.$(OBJEXT) \
-	RageUtil_FileDB.$(OBJEXT) global.$(OBJEXT)
+	Preference.$(OBJEXT) LuaManager.$(OBJEXT) \
+	LuaReference.$(OBJEXT) MessageManager.$(OBJEXT) \
+	ProductInfo.$(OBJEXT) RageException.$(OBJEXT) \
+	RageLog.$(OBJEXT) RageThreads.$(OBJEXT) RageTimer.$(OBJEXT) \
+	RageUtil.$(OBJEXT) RageUtil_FileDB.$(OBJEXT) \
+	RageUtil_WorkerThread.$(OBJEXT) global.$(OBJEXT)
 am_test_audio_readers_OBJECTS = $(am__objects_50) $(am__objects_61) \
 	tests/test_audio_readers.$(OBJEXT) RageSoundUtil.$(OBJEXT) \
 	RageSoundMixBuffer.$(OBJEXT) \
@@ -970,22 +987,31 @@ am__test_file_errors_SOURCES_DIST =  \
 	arch/Threads/Threads_Pthreads.cpp \
 	arch/Threads/Threads_Pthreads.h arch/Dialog/Dialog.cpp \
 	arch/Dialog/Dialog.h arch/Dialog/DialogDriver.cpp \
-	arch/Dialog/DialogDriver.h tests/test_misc.cpp \
-	tests/test_misc.h IniFile.cpp IniFile.h XmlFile.cpp XmlFile.h \
-	DateTime.cpp DateTime.h PrefsManager.cpp PrefsManager.h \
-	Preference.cpp Preference.h LuaFunctions.h LuaHelpers.cpp \
-	LuaHelpers.h RageException.cpp RageLog.cpp RageThreads.cpp \
+	arch/Dialog/DialogDriver.h aes/aescrypt.c aes/aeskey.c \
+	aes/aestab.c aes/aesopt.h aes/aes.h ibutton/owerr.c \
+	ibutton/ownetu.c ibutton/ownet.h ibutton/owllu.c \
+	ibutton/owsesu.c ibutton/owtrnu.c ibutton/owfile.h \
+	ibutton/crcutil.c ibutton/ds2480ut.c ibutton/ds2480.h \
+	ibutton/linuxlnk.c ibutton/sha18.c ibutton/shaib.c \
+	ibutton/shaib.h iButton.cpp iButton.h crypto/CryptBn.cpp \
+	crypto/CryptBn.h crypto/CryptMD5.cpp crypto/CryptMD5.h \
+	crypto/CryptNoise.cpp crypto/CryptPrime.cpp \
+	crypto/CryptPrime.h crypto/CryptRSA.cpp crypto/CryptRSA.h \
+	crypto/CryptRand.cpp crypto/CryptRand.h crypto/CryptSH512.cpp \
+	crypto/CryptSH512.h crypto/CryptSHA.cpp crypto/CryptSHA.h \
+	tests/test_misc.cpp tests/test_misc.h IniFile.cpp IniFile.h \
+	XmlFile.cpp XmlFile.h DateTime.cpp DateTime.h PrefsManager.cpp \
+	PrefsManager.h Preference.cpp Preference.h LuaFunctions.h \
+	LuaManager.cpp LuaManager.h LuaReference.h LuaReference.cpp \
+	MessageManager.h MessageManager.cpp ProductInfo.h \
+	ProductInfo.cpp RageException.cpp RageLog.cpp RageThreads.cpp \
 	RageTimer.cpp RageTimer.h RageUtil.cpp RageUtil_FileDB.cpp \
-	RageUtil_FileDB.h global.cpp global.h \
+	RageUtil_FileDB.h RageUtil_WorkerThread.cpp \
+	RageUtil_WorkerThread.h global.cpp global.h \
 	tests/test_file_errors.cpp MsdFile.cpp MsdFile.h \
 	$(srcdir)/libtomcrypt/libtomcrypt.a \
 	$(srcdir)/libtommath/libtommath.a CryptManager.cpp \
-	CryptManager.h CryptHelpers.cpp CryptHelpers.h \
-	crypto/CryptBn.cpp crypto/CryptBn.h crypto/CryptMD5.cpp \
-	crypto/CryptMD5.h crypto/CryptNoise.cpp crypto/CryptPrime.cpp \
-	crypto/CryptPrime.h crypto/CryptRSA.cpp crypto/CryptRSA.h \
-	crypto/CryptRand.cpp crypto/CryptRand.h crypto/CryptSH512.cpp \
-	crypto/CryptSH512.h crypto/CryptSHA.cpp crypto/CryptSHA.h
+	CryptManager.h CryptHelpers.cpp CryptHelpers.h
 am_test_file_errors_OBJECTS = $(am__objects_61) \
 	tests/test_file_errors.$(OBJEXT) MsdFile.$(OBJEXT) \
 	XmlFile.$(OBJEXT) CryptManager.$(OBJEXT) $(am__objects_58) \
@@ -1029,13 +1055,27 @@ am__test_file_readers_SOURCES_DIST =  \
 	arch/Threads/Threads_Pthreads.cpp \
 	arch/Threads/Threads_Pthreads.h arch/Dialog/Dialog.cpp \
 	arch/Dialog/Dialog.h arch/Dialog/DialogDriver.cpp \
-	arch/Dialog/DialogDriver.h tests/test_misc.cpp \
-	tests/test_misc.h IniFile.cpp IniFile.h XmlFile.cpp XmlFile.h \
-	DateTime.cpp DateTime.h PrefsManager.cpp PrefsManager.h \
-	Preference.cpp Preference.h LuaFunctions.h LuaHelpers.cpp \
-	LuaHelpers.h RageException.cpp RageLog.cpp RageThreads.cpp \
+	arch/Dialog/DialogDriver.h aes/aescrypt.c aes/aeskey.c \
+	aes/aestab.c aes/aesopt.h aes/aes.h ibutton/owerr.c \
+	ibutton/ownetu.c ibutton/ownet.h ibutton/owllu.c \
+	ibutton/owsesu.c ibutton/owtrnu.c ibutton/owfile.h \
+	ibutton/crcutil.c ibutton/ds2480ut.c ibutton/ds2480.h \
+	ibutton/linuxlnk.c ibutton/sha18.c ibutton/shaib.c \
+	ibutton/shaib.h iButton.cpp iButton.h crypto/CryptBn.cpp \
+	crypto/CryptBn.h crypto/CryptMD5.cpp crypto/CryptMD5.h \
+	crypto/CryptNoise.cpp crypto/CryptPrime.cpp \
+	crypto/CryptPrime.h crypto/CryptRSA.cpp crypto/CryptRSA.h \
+	crypto/CryptRand.cpp crypto/CryptRand.h crypto/CryptSH512.cpp \
+	crypto/CryptSH512.h crypto/CryptSHA.cpp crypto/CryptSHA.h \
+	tests/test_misc.cpp tests/test_misc.h IniFile.cpp IniFile.h \
+	XmlFile.cpp XmlFile.h DateTime.cpp DateTime.h PrefsManager.cpp \
+	PrefsManager.h Preference.cpp Preference.h LuaFunctions.h \
+	LuaManager.cpp LuaManager.h LuaReference.h LuaReference.cpp \
+	MessageManager.h MessageManager.cpp ProductInfo.h \
+	ProductInfo.cpp RageException.cpp RageLog.cpp RageThreads.cpp \
 	RageTimer.cpp RageTimer.h RageUtil.cpp RageUtil_FileDB.cpp \
-	RageUtil_FileDB.h global.cpp global.h \
+	RageUtil_FileDB.h RageUtil_WorkerThread.cpp \
+	RageUtil_WorkerThread.h global.cpp global.h \
 	tests/test_file_readers.cpp
 am_test_file_readers_OBJECTS = $(am__objects_61) \
 	tests/test_file_readers.$(OBJEXT)
@@ -1077,13 +1117,28 @@ am__test_threads_SOURCES_DIST = archutils/Unix/AssertionHandler.cpp \
 	arch/Threads/Threads_Pthreads.cpp \
 	arch/Threads/Threads_Pthreads.h arch/Dialog/Dialog.cpp \
 	arch/Dialog/Dialog.h arch/Dialog/DialogDriver.cpp \
-	arch/Dialog/DialogDriver.h tests/test_misc.cpp \
-	tests/test_misc.h IniFile.cpp IniFile.h XmlFile.cpp XmlFile.h \
-	DateTime.cpp DateTime.h PrefsManager.cpp PrefsManager.h \
-	Preference.cpp Preference.h LuaFunctions.h LuaHelpers.cpp \
-	LuaHelpers.h RageException.cpp RageLog.cpp RageThreads.cpp \
+	arch/Dialog/DialogDriver.h aes/aescrypt.c aes/aeskey.c \
+	aes/aestab.c aes/aesopt.h aes/aes.h ibutton/owerr.c \
+	ibutton/ownetu.c ibutton/ownet.h ibutton/owllu.c \
+	ibutton/owsesu.c ibutton/owtrnu.c ibutton/owfile.h \
+	ibutton/crcutil.c ibutton/ds2480ut.c ibutton/ds2480.h \
+	ibutton/linuxlnk.c ibutton/sha18.c ibutton/shaib.c \
+	ibutton/shaib.h iButton.cpp iButton.h crypto/CryptBn.cpp \
+	crypto/CryptBn.h crypto/CryptMD5.cpp crypto/CryptMD5.h \
+	crypto/CryptNoise.cpp crypto/CryptPrime.cpp \
+	crypto/CryptPrime.h crypto/CryptRSA.cpp crypto/CryptRSA.h \
+	crypto/CryptRand.cpp crypto/CryptRand.h crypto/CryptSH512.cpp \
+	crypto/CryptSH512.h crypto/CryptSHA.cpp crypto/CryptSHA.h \
+	tests/test_misc.cpp tests/test_misc.h IniFile.cpp IniFile.h \
+	XmlFile.cpp XmlFile.h DateTime.cpp DateTime.h PrefsManager.cpp \
+	PrefsManager.h Preference.cpp Preference.h LuaFunctions.h \
+	LuaManager.cpp LuaManager.h LuaReference.h LuaReference.cpp \
+	MessageManager.h MessageManager.cpp ProductInfo.h \
+	ProductInfo.cpp RageException.cpp RageLog.cpp RageThreads.cpp \
 	RageTimer.cpp RageTimer.h RageUtil.cpp RageUtil_FileDB.cpp \
-	RageUtil_FileDB.h global.cpp global.h tests/test_threads.cpp
+	RageUtil_FileDB.h RageUtil_WorkerThread.cpp \
+	RageUtil_WorkerThread.h global.cpp global.h \
+	tests/test_threads.cpp
 am_test_threads_OBJECTS = $(am__objects_61) \
 	tests/test_threads.$(OBJEXT)
 test_threads_OBJECTS = $(am_test_threads_OBJECTS)
@@ -1125,13 +1180,27 @@ am__test_timing_data_SOURCES_DIST =  \
 	arch/Threads/Threads_Pthreads.cpp \
 	arch/Threads/Threads_Pthreads.h arch/Dialog/Dialog.cpp \
 	arch/Dialog/Dialog.h arch/Dialog/DialogDriver.cpp \
-	arch/Dialog/DialogDriver.h tests/test_misc.cpp \
-	tests/test_misc.h IniFile.cpp IniFile.h XmlFile.cpp XmlFile.h \
-	DateTime.cpp DateTime.h PrefsManager.cpp PrefsManager.h \
-	Preference.cpp Preference.h LuaFunctions.h LuaHelpers.cpp \
-	LuaHelpers.h RageException.cpp RageLog.cpp RageThreads.cpp \
+	arch/Dialog/DialogDriver.h aes/aescrypt.c aes/aeskey.c \
+	aes/aestab.c aes/aesopt.h aes/aes.h ibutton/owerr.c \
+	ibutton/ownetu.c ibutton/ownet.h ibutton/owllu.c \
+	ibutton/owsesu.c ibutton/owtrnu.c ibutton/owfile.h \
+	ibutton/crcutil.c ibutton/ds2480ut.c ibutton/ds2480.h \
+	ibutton/linuxlnk.c ibutton/sha18.c ibutton/shaib.c \
+	ibutton/shaib.h iButton.cpp iButton.h crypto/CryptBn.cpp \
+	crypto/CryptBn.h crypto/CryptMD5.cpp crypto/CryptMD5.h \
+	crypto/CryptNoise.cpp crypto/CryptPrime.cpp \
+	crypto/CryptPrime.h crypto/CryptRSA.cpp crypto/CryptRSA.h \
+	crypto/CryptRand.cpp crypto/CryptRand.h crypto/CryptSH512.cpp \
+	crypto/CryptSH512.h crypto/CryptSHA.cpp crypto/CryptSHA.h \
+	tests/test_misc.cpp tests/test_misc.h IniFile.cpp IniFile.h \
+	XmlFile.cpp XmlFile.h DateTime.cpp DateTime.h PrefsManager.cpp \
+	PrefsManager.h Preference.cpp Preference.h LuaFunctions.h \
+	LuaManager.cpp LuaManager.h LuaReference.h LuaReference.cpp \
+	MessageManager.h MessageManager.cpp ProductInfo.h \
+	ProductInfo.cpp RageException.cpp RageLog.cpp RageThreads.cpp \
 	RageTimer.cpp RageTimer.h RageUtil.cpp RageUtil_FileDB.cpp \
-	RageUtil_FileDB.h global.cpp global.h \
+	RageUtil_FileDB.h RageUtil_WorkerThread.cpp \
+	RageUtil_WorkerThread.h global.cpp global.h \
 	tests/test_timing_data.cpp TimingData.cpp TimingData.h
 am_test_timing_data_OBJECTS = $(am__objects_61) \
 	tests/test_timing_data.$(OBJEXT) TimingData.$(OBJEXT)
@@ -1909,19 +1978,26 @@ all_test_SOURCES = \
 		$(ArchHooks) \
 		$(Threads) \
 		$(Dialog) \
+                $(aes) \
+                $(ibutton) \
+                $(crypto) \
 		tests/test_misc.cpp tests/test_misc.h \
 		IniFile.cpp IniFile.h \
 		XmlFile.cpp XmlFile.h \
 		DateTime.cpp DateTime.h \
 		PrefsManager.cpp PrefsManager.h \
 		Preference.cpp Preference.h \
-		LuaFunctions.h LuaHelpers.cpp LuaHelpers.h \
+		LuaFunctions.h LuaManager.cpp LuaManager.h \
+		LuaReference.h LuaReference.cpp \
+		MessageManager.h MessageManager.cpp \
+		ProductInfo.h ProductInfo.cpp \
 		RageException.cpp \
 		RageLog.cpp \
 		RageThreads.cpp \
 		RageTimer.cpp RageTimer.h \
 		RageUtil.cpp \
 		RageUtil_FileDB.cpp RageUtil_FileDB.h \
+		RageUtil_WorkerThread.cpp RageUtil_WorkerThread.h \
 		global.cpp global.h
 
 test_audio_readers_SOURCES = \
@@ -2603,7 +2679,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LightsManager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LightsMapper.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LinkedOptionsMenu.Po@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LuaHelpers.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LuaManager.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LuaReference.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/LyricDisplay.Po@am__quote@

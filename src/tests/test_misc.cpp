@@ -1,9 +1,9 @@
 #include "global.h"
 #include "test_misc.h"
+#include <getopt.h>
 
 #include "RageFileManager.h"
 #include "RageLog.h"
-#include "arch/arch.h"
 #include "arch/ArchHooks/ArchHooks.h"
 void ExitGame() { }
 

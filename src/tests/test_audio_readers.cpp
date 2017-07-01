@@ -51,7 +51,7 @@ void find( const char *haystack, int hs, const char *needle, int ns )
 
 void dump_bin( const char *fn, const char *buf, int size )
 {
-	int fd = open( fn, O_WRONLY|O_CREAT|O_TRUNC );
+	int fd = open( fn, O_WRONLY|O_CREAT|O_TRUNC, 0600 );
 	ASSERT( fd != -1 );
 	write( fd, buf, size );
 	close( fd );
@@ -344,7 +344,7 @@ bool RunTests( SoundReader *snd, const TestFile &tf )
 		if( !Identical )
 		{
 			LOG->Trace("Expected data:");
-			dump( tf.initial, ARRAYSIZE(tf.initial) );
+			dump( tf.initial, ARRAYLEN(tf.initial) );
 			LOG->Trace(" ");
 			Failed = true;
 		}
@@ -362,7 +362,7 @@ bool RunTests( SoundReader *snd, const TestFile &tf )
 		if( !Identical )
 		{
 			LOG->Trace("Expected half second data:");
-                        dump( tf.later, ARRAYSIZE(tf.later) );
+                        dump( tf.later, ARRAYLEN(tf.later) );
 			LOG->Trace("Got half second data:");
 			dump( LaterData, 16 );
 			Failed = true;

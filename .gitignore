@@ -5,6 +5,8 @@
 *.so
 *.sw?
 *.class
+*.log
+*.trs
 .dirstamp
 Makefile
 a.out
