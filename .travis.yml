@@ -1,4 +1,6 @@
 language: cpp
+deploy:
+  skip_cleanup: true
 matrix:
   include:
   - os: linux
