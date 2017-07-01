@@ -28,6 +28,8 @@ matrix:
         - libavutil-dev
         - libsamplerate0-dev
         - libsndfile1-dev
+before_deploy:
+  - strip src/openitg
 deploy:
   provider: releases
   api_key:
