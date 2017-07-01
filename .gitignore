@@ -10,11 +10,11 @@ Makefile
 a.out
 aclocal.m4
 autom4te.cache/
+autoconf/
 confdefs.h
 config.log
 config.status
 config.sub
-configure
 openitg
 src/.deps/
 src/Makefile
