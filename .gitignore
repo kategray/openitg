@@ -7,6 +7,7 @@
 *.class
 *.log
 *.trs
+*.*~
 .dirstamp
 Makefile
 a.out
@@ -30,7 +31,7 @@ assets/utilities/itg2-util/src/itg2ac-util
 src/verinfo.h
 src/libresample/src/config.h
 src/libresample/configure
-src/libresample/tests/testresample
+src/libresample/tests/
 run
 build/artifacts/
 
