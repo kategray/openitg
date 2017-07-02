@@ -195,6 +195,14 @@ inline float roundf( float f )	{ if(f < 0) return truncf(f-0.5f); return truncf(
 inline float strtof( const char *s, char **se ) { return (float) strtod( s, se ); }
 #endif
 
+#ifdef NEED_INW_P
+#define inw_p(addr)	inw(addr)
+#endif
+
+#ifdef NEED_OUTW_P
+#define outw_p(x, addr)	outw((x), (addr))
+#endif
+
 /* Don't include our own headers here, since they tend to change often. */
 
 #endif

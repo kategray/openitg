@@ -270,6 +270,10 @@ AC_CHECK_DECL(acosf, , AC_DEFINE([NEED_ACOSF],1,[Need acosf]), [#include <math.h
 AC_CHECK_DECL(roundf, , AC_DEFINE([NEED_ROUNDF],1,[Need roundf]), [#include <math.h>])
 AC_CHECK_DECL(truncf, , AC_DEFINE([NEED_TRUNCF],1,[Need truncf]), [#include <math.h>])
 
+# Raspberry PI
+AC_CHECK_DECL(outw_p, , AC_DEFINE([NEED_OUTW_P],1,[Need outw_p]), [#include <sys/io.h>])
+AC_CHECK_DECL(inw_p, , AC_DEFINE([NEED_INW_P],1,[Need inw_p]), [#include <sys/io.h>])
+
 # This doesn't work on glibc math functions:
 # AC_CHECK_FUNCS([sqrtf sinf tanf cosf acosf roundf truncf])
 
